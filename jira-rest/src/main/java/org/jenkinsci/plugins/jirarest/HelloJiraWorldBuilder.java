@@ -16,12 +16,7 @@ import org.kohsuke.stapler.QueryParameter;
 
 import java.io.IOException;
 
-/**
- * Build step that will mass-update all issues matching a JQL query, using the specified workflow
- * action name (e.g., "Resolve Issue", "Close Issue").
- *
- * @author Joe Hansche <jhansche@myyearbook.com>
- */
+
 public class HelloJiraWorldBuilder extends Builder {
     private final String jqlSearch;
     private final String workflowActionName;
