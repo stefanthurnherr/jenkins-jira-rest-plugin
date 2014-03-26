@@ -15,7 +15,9 @@ import org.kohsuke.stapler.QueryParameter;
 
 import java.io.IOException;
 
-
+/**
+ * Test builder plugin for jenkins.
+ */
 public class HelloJiraWorldBuilder extends Builder {
     private final String jqlSearch;
     private final String workflowActionName;
