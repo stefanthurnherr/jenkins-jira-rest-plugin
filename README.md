@@ -5,5 +5,6 @@ This Jenkins plugin will eventually integrate Jenkins to <a href="http://www.atl
 
 Planned features (in no particular order):
 * Add links to issue keys mentioned in commit comments
-* Ability to transition issues from one workflow status into another workflow status
+* Ability to transition issues of a specified JIRA project from one workflow status into another workflow status
+* Set version of all issues of a specified JIRA project and in a specified workflow status to a specified version
 * Get list of transitioned issues
