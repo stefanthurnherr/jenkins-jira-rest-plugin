@@ -58,7 +58,7 @@ public class HelloWorldBuilder extends Builder {
         if (getDescriptor().getUseFrench())
             listener.getLogger().println("Bonjour, "+name+"!");
         else
-            listener.getLogger().println("Hello, "+name+"!");
+            listener.getLogger().println("Hello, my dear "+name+"!");
         return true;
     }
 
