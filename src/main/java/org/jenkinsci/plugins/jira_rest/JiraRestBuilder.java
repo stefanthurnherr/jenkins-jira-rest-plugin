@@ -55,10 +55,6 @@ public class JiraRestBuilder extends Builder {
 	/**
      * Descriptor for {@link JiraRestBuilder}. Used as a singleton.
      * The class is marked as public so that it can be accessed from views.
-     *
-     * <p>
-     * See <tt>src/main/resources/hudson/plugins/hello_world/HelloWorldBuilder/*.jelly</tt>
-     * for the actual HTML fragment for the configuration screen.
      */
     @Extension // This indicates to Jenkins that this is an implementation of an extension point.
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
@@ -81,9 +77,36 @@ public class JiraRestBuilder extends Builder {
          */
         public FormValidation doCheckJiraUrl(@QueryParameter String value)
                 throws IOException, ServletException {
+        	if (value.length() == 0) {
+        		return FormValidation.error("Please enter a url.");
+        	} else if (value.startsWith("http")) {
+        		FormValidation.error("URL specified does not look like a valid url.");
+        	}
+             return FormValidation.ok();
+        }
+        
+        /**
+         * Performs on-the-fly validation of the form field 'jiraUsername'.
+         */
+        public FormValidation doCheckJiraUsername(@QueryParameter String value)
+                throws IOException, ServletException {
+        	if (value.length() == 0) {
+        		return FormValidation.error("Please enter a username.");
+        	}
              return FormValidation.ok();
         }
 
+        /**
+         * Performs on-the-fly validation of the form field 'jiraPassword'.
+         */
+        public FormValidation doCheckJiraPassword(@QueryParameter String value)
+                throws IOException, ServletException {
+        	if (value.length() == 0) {
+        		return FormValidation.error("Please enter a password.");
+        	}
+             return FormValidation.ok();
+        }
+        
         public boolean isApplicable(Class<? extends AbstractProject> aClass) {
             // Indicates that this builder can be used with all kinds of project types 
             return true;
@@ -93,7 +116,7 @@ public class JiraRestBuilder extends Builder {
          * This human readable name is used in the configuration screen.
          */
         public String getDisplayName() {
-            return "Interact with JIRA instance";
+            return "Interact with JIRA (REST API)";
         }
 
         @Override
