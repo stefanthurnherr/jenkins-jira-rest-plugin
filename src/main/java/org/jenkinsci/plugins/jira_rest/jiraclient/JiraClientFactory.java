@@ -1,10 +1,28 @@
 package org.jenkinsci.plugins.jira_rest.jiraclient;
 
-import org.jenkinsci.plugins.jira_rest.jiraclient.implrcarz.RcarzJiraClient;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import com.atlassian.jira.rest.client.api.JiraRestClient;
+import com.atlassian.jira.rest.client.api.domain.User;
+import com.atlassian.jira.rest.client.internal.async.AsynchronousJiraRestClientFactory;
+import com.atlassian.util.concurrent.Promise;
+
 
 public class JiraClientFactory {
-	
-	public static JiraClient create(String url, String username, String password) {
-		return new RcarzJiraClient(url, username, password);
-	}
+
+    public static JiraAccess create(String url, String username, String password) throws URISyntaxException {
+
+        URI jiraServerUri = new URI(url);
+
+        final AsynchronousJiraRestClientFactory factory = new AsynchronousJiraRestClientFactory();
+        final JiraRestClient jiraRestClient = factory.createWithBasicHttpAuthentication(jiraServerUri, username, password);
+
+        return new JiraAccess() {
+            public Promise<User> getEmailAddress(String username) {
+                return jiraRestClient.getUserClient().getUser((String)null);
+            }
+        };
+
+    }
 }

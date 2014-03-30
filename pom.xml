@@ -12,28 +12,24 @@
   <packaging>hpi</packaging>
 
 
-  <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
   <dependencies>
+  
+    <dependency>
+        <groupId>com.atlassian.jira</groupId>
+        <artifactId>jira-rest-java-client-core</artifactId>
+        <version>2.0.0-m19</version>
+    </dependency>
+    <dependency>
+        <groupId>com.atlassian.jira</groupId>
+        <artifactId>jira-rest-java-client-api</artifactId>
+        <version>2.0.0-m19</version>
+    </dependency>
   	<dependency>
-  		<groupId>net.rcarz</groupId>
-  		<artifactId>jira-client</artifactId>
-  		<version>0.4</version>
-  	</dependency>
-  	
+        <groupId>com.atlassian.util.concurrent</groupId>
+        <artifactId>atlassian-util-concurrent</artifactId>
+        <version>2.4.1</version>
+    </dependency>
+    
   	<dependency>
   	    <groupId>org.jenkins-ci.plugins</groupId>
   		<artifactId>credentials</artifactId>
@@ -46,4 +42,46 @@
   		<version>1.4.0</version>
   	</dependency>
   </dependencies>
+  
+  
+  <repositories>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>http://repo.jenkins-ci.org/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>atlassian-public</id>
+      <url>https://maven.atlassian.com/repository/public</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </snapshots>
+      <releases>
+         <enabled>true</enabled>
+         <checksumPolicy>warn</checksumPolicy>
+      </releases>
+</repository>
+    
+  </repositories>
+  
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>http://repo.jenkins-ci.org/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories> 
+  
 </project>

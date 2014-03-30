@@ -1,5 +1,5 @@
 package org.jenkinsci.plugins.jira_rest.jiraclient;
 
-public interface JiraClient {
+public interface JiraAccess {
 
 }
