@@ -1,4 +1,4 @@
 jira-rest
 =========
 
-My playground for testing stuff related to jenkins plugin development.
+My great playground for testing stuff related to jenkins plugin development.
